@@ -1,7 +1,8 @@
 # ASCI_Snake 
 The game was written in c . Enjoy the game :-)   
 
- 
+ ![Zrzut ekranu 2023-10-01 220420](https://github.com/Wlodi06/ASCI_Snake/assets/146671334/d95891d4-c985-412c-a385-f94ce4609b6c)
+![ss](https://github.com/Wlodi06/ASCI_Snake/assets/146671334/5e36fc75-107b-4fb9-8fdd-ecbe5af6db67)
 
-![Zrzut ekranu 2023-10-01 220420](https://github.com/Wlodi06/ASCI_Snake/assets/146671334/675748fd-41f6-452f-86e1-04d7a53bdf06)
-![ss](https://github.com/Wlodi06/ASCI_Snake/assets/146671334/2d9bbeae-c0f8-4706-acd7-b0dd88e87055)
+
+
