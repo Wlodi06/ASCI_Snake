@@ -3,12 +3,12 @@
 #include <windows.h>
 #include <stdbool.h>
 #include <conio.h>
-#include <pthread.h> // Dla w¹tków
+#include <pthread.h> // Dla wÂ¹tkÃ³w
 #include <time.h>
 
 #define AREA_SIZE_X 40
 #define AREA_SIZE_Y 20
-//snake by Miko³aj w³odarzcyk 3tee
+//snake by MikoÂ³aj wÂ³odarzcyk 3tee
 //github project
 
 //            x             y
@@ -48,7 +48,7 @@ void game_over()
         if(score>bscore)bscore=score;
         Sleep(500);
         actual_dir = NULL;
-        while(actual_dir != 'r'){}
+        while(actual_dir != 'r' && actual_dir != 'R'){}
         score=0;
 
         for (int i = 0; i < (AREA_SIZE_X*AREA_SIZE_Y)-1; i++) {
@@ -91,7 +91,7 @@ void DSP_cord_drw()
 
 void display_refresh()
 {
-  //przesuniêcie na pozycje 0,0 w konsoli
+  //przesuniÃªcie na pozycje 0,0 w konsoli
   printf("\033[0;0H");
   area_outline();
   DSP_cord_drw();
@@ -102,11 +102,11 @@ int x_oba=1,y_oba=1 ;
 void obstacle(){
 
    if(snake_x_poz[0]==x_oba && snake_y_poz[0]==y_oba)score++;
-   // Generowanie losowej liczby ca³kowitej w zakresie od 0 do RAND_MAX
+   // Generowanie losowej liczby caÂ³kowitej w zakresie od 0 do RAND_MAX
    if(area[x_oba][y_oba] != 'o') x_oba = rand()% AREA_SIZE_X - 1;
    if(area[x_oba][y_oba] != 'o') y_oba = rand()% AREA_SIZE_Y - 1;
     area[x_oba][y_oba] = 'o';
-   //wpisanie wartoœci do czêœci wê¿a
+   //wpisanie wartoÅ“ci do czÃªÅ“ci wÃªÂ¿a
 }
 void collision()
 {
@@ -142,7 +142,7 @@ void snake_move()
                     break;
             }
 
-    //spawdzanie czy w¹¿ dotchn¹³ samgo soebie
+    //spawdzanie czy wÂ¹Â¿ dotchnÂ¹Â³ samgo soebie
     for (int i = score+3; i > 1; i--)
     {
        if(snake_x_poz[i]==snake_x_poz[0] && snake_y_poz[i]==snake_y_poz[0])
@@ -151,7 +151,7 @@ void snake_move()
        }
     }
 
-     ///usuwanie * za we¿em
+     ///usuwanie * za wezem
        for (int i = score+3; i > 0; i--) {
         snake_x_poz[i]=snake_x_poz[i-1];
          snake_y_poz[i]=snake_y_poz[i-1];
@@ -160,14 +160,14 @@ void snake_move()
 }
 
   char actual_dir;
-// Funkcja do wykonywania w¹tku odpowiedzialnego za sprawdzanie klawiszy
+// Funkcja do wykonywania wÂ¹tku odpowiedzialnego za sprawdzanie klawiszy
 void* snake_control(void* arg) {
 
     while (1) {
         if (_kbhit()) {
             actual_dir = _getch();
         }
-        Sleep(100); // OpóŸnienie sprawdzania klawiszy w tle
+        Sleep(50); // OpÃ³Å¸nienie sprawdzania klawiszy w tle
     }
     return NULL;
 }
@@ -198,7 +198,7 @@ printf("najlepszy wynik : %i\n",bscore);
 printf("----------------------\n");
 printf("nacisnij w aby zaczac grac...\n");
 printf("\n");
-  while(actual_dir != 'w'){}
+  while(actual_dir != 'w' && actual_dir != 'W'){}
   system("cls");
   system("color 70");
 }
@@ -208,12 +208,12 @@ int main()
 
     system("cls");
     srand(time(NULL)); //inicjalizacja losowych liczb
-           pthread_t thread; // Identyfikator w¹tku
+           pthread_t thread; // Identyfikator wÂ¹tku
 //snake cord
 
-    // Tworzenie w¹tku do wykonywania funkcji w czasie opóŸnienia
+    // Tworzenie wÂ¹tku do wykonywania funkcji w czasie opÃ³Å¸nienia
     if (pthread_create(&thread, NULL, snake_control, NULL) != 0) {
-        perror("B³¹d podczas tworzenia w¹tku.");
+        perror("BÂ³Â¹d podczas tworzenia wÂ¹tku.");
         return 1;
     }
 
@@ -226,9 +226,9 @@ int main()
     area_outline();
     //narysowanie kontur
     DSP_cord_drw();
-    //pêtla gry
+    //pÃªtla gry
     start();
-    //pêtla gry
+    //pÃªtla gry
     game_loop();
 
     return 0;
